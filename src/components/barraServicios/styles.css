@@ -1,0 +1,38 @@
+.con-BarSer{
+    justify-content: right;
+    max-height: auto;
+    
+}
+.con-BarSer>*{
+    font-family: var(--fuente-principal);
+}
+.pr-BarSer  {
+    background: white!important;
+    padding: 0;
+    margin: 5px 5px;
+}
+
+/*moviles vertical*/
+@media (max-width: 575px){
+    .pr-BarSer{
+        display: none;
+    }
+}
+/*moviles horizontal*/
+@media (max-width: 767px){
+    .pr-BarSer{
+        display: none;
+    }
+}
+/*Tablets*/
+@media (max-width: 991px){
+    .pr-BarSer{
+        display: none;
+    }
+}
+
+@media (max-width: 991px){
+    .pr-BarSer{
+        display: none;
+    }
+}
