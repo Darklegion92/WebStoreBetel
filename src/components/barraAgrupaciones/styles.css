@@ -1,11 +1,19 @@
-
-
-
+.nav-link:hover{
+    color:black;
+}
+.nav-link{
+    color:black;
+}
+.cont-Agr{
+    font-size: 0.8rem!important;
+}
 
 
 /*moviles vertical*/
 @media (max-width: 575px){
-
+    .cont-Agr{
+        display: none;
+    }
 }
 /*moviles horizontal*/
 @media (max-width: 767px){

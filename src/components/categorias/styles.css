@@ -1,0 +1,16 @@
+.com-cat{
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+}
+.text-cat{
+    text-decoration: underline;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 100px;
+}
+.con-cat{
+    border: none;
+    display: flex;
+    justify-content: center;
+}

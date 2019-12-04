@@ -1,5 +1,10 @@
+*{
+    font-family: var(--fuente-principal);
+}
+
 :root{
-    --color-principal: #000000;
-    --color-secundario: #ffffff;
-    --fuente-principal:'Courier New', Courier, monospace;
+    --color-principal: #ABC355;
+    --color-secundario: #D38241;
+    --color-terciario: #EFE74B;
+    --fuente-principal:'Lato', sans-serif;
 }

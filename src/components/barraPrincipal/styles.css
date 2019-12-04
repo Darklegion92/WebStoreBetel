@@ -1,14 +1,29 @@
 .con-barPri > * {
-  font-family: var(--fuente-principal);
   padding-right: 30px;
 }
 
 .con-barPri {
   background: white !important;
   border-bottom-style: solid;
+  border-bottom-width: 0.2rem;
   border-color: var( --color-principal);
   padding: 0 20px;
   margin: 0;
+}
+.text-pri{
+  color: black;
+}
+.icon-pri{
+  height:50px;
+  width: 50px;
+  color:#e7e3e3b7;
+  padding: 12px;
+
+}
+.icon-pri:hover{
+  color: black;
+  background:#e7e3e3b7;
+  border-radius: 25px;
 }
 
 .campoBusqueda{
@@ -40,9 +55,13 @@
   }
   .input-group{
     padding-top:20px ;
-    width: 100%;
+    width: 100%!important;
     margin-left:20px ;
     margin-right:0 ;
+  }
+  .con-barPri {
+    border-bottom-style: solid;
+    border-bottom-width: 0.1rem;
   }
 }
 /*moviles horizontal*/
@@ -51,9 +70,7 @@
 }
 /*Tablets*/
 @media (max-width: 991px){
-  .con-barPri{
-    background: green!important;
-  }
+  
 }
 
 /*pantallas pequeñas*/
