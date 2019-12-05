@@ -1,5 +1,6 @@
 import React from "react";
-import { Carousel } from "react-bootstrap";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
 import "./styles.css";
 import {
   IoIosArrowDroprightCircle,
@@ -8,7 +9,26 @@ import {
 
 export default function index() {
   return (
-    <Carousel
+    <Carousel 
+    showStatus={false}
+    showThumbs={false}
+    infiniteLoop={true}
+    autoPlay={true} 
+    >
+      <div>
+        <img src="img/slider/01.jpg" />
+        
+      </div>
+      <div>
+        <img src="img/slider/02.jpg" />
+        
+      </div>
+      <div>
+        <img src="img/slider/03.jpg" />
+        
+      </div>
+
+      {/* <Carousel
       nextIcon=<IoIosArrowDroprightCircle size="50px" />
       prevIcon=<IoIosArrowDropleftCircle size="50px" />
       fade = "true"
@@ -27,6 +47,7 @@ export default function index() {
           alt="Third slide"
         />
       </Carousel.Item>
+    </Carousel>*/}
     </Carousel>
   );
 }
