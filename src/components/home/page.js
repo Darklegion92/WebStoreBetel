@@ -20,8 +20,6 @@ export default function pages(props) {
       <div id="cuerpo">
         <Slider />
         <Categorias />
-        <Categorias />
-        <Categorias />
       </div>
     </Fragment>
   );
