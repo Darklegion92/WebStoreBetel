@@ -60,7 +60,7 @@ export default class barraPrincipal extends Component {
             </Nav.Link>
             <Nav.Link href="#link">
               <Figure>
-                <MdLocalGroceryStore className="icon-pri" />
+                <MdLocalGroceryStore className="carrito-icon" />
                 <Figure.Caption className="text-pri">Carrito</Figure.Caption>
               </Figure>
             </Nav.Link>

@@ -20,6 +20,20 @@
   padding: 12px;
 
 }
+
+.carrito-icon{
+  color:rgb(97, 97, 97);
+  height:50px;
+  width: 50px;
+  padding: 12px;
+
+}
+
+.carrito-icon:hover{
+  color: black;
+  background:var(--color-principal);
+  border-radius: 25px;
+}
 .icon-pri:hover{
   color: black;
   background:#e7e3e3b7;
