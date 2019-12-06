@@ -6,6 +6,7 @@ import BarraAgrupaciones from "../barraAgrupaciones";
 import Slider from "../slider";
 import Categorias from "../categorias";
 import Secciones from "../secciones";
+import Footer from "../footer";
 
 import "./styles.css";
 
@@ -24,6 +25,9 @@ export default function pages(props) {
         <Categorias />
         <Secciones/>
       </div>
+      <Nav className="sticky-bottom">
+        <Footer/>
+      </Nav>
     </Fragment>
   );
 }
