@@ -26,28 +26,28 @@ export default () => {
         rightChevron={<IoIosArrowDroprightCircle  size="50" color="rgba(124, 122, 122, 0.486)"/>}
       
       >
-        <div style={{ height: 335, background: "#EEE" }}>
+        <div >
           <img
             className="d-block w-100"
             src="img/slider/01.jpg"
             alt="First slide"
           />
         </div>
-        <div style={{ height: 335, background: "#EEE" }}>
+        <div>
           <img
             className="d-block w-100"
             src="img/slider/02.jpg"
             alt="First slide"
           />
         </div>
-        <div style={{ height: 335, background: "#EEE" }}>
+        <div>
           <img
             className="d-block w-100"
             src="img/slider/04.jpg"
             alt="First slide"
           />
         </div>
-        <div style={{ height: 335, background: "#EEE" }}>
+        <div>
           <img
             className="d-block w-100"
             src="img/slider/04.jpg"
