@@ -11,6 +11,7 @@ export default function index() {
       showThumbs={false}
       infiniteLoop={true}
       autoPlay={true}
+      transitionTime={1000}
     >
       <div>
         <img src="img/slider/01.jpg" alt="imagen"/>

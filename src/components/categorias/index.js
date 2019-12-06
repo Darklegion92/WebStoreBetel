@@ -1,133 +1,83 @@
 import React from "react";
-import { ListGroup, Image, InputGroup, Nav } from "react-bootstrap";
-import { Carousel } from "react-responsive-carousel";
+import {  Image } from "react-bootstrap";
 import "./styles.css";
-export default function index() {
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 8
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 6
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 4
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 3
+  }
+};
+
+export default function categorias() {
   return (
     <Carousel
-      showStatus={false}
-      showThumbs={false}
-      infiniteLoop={true}
-      showIndicators={false}
-      autoPlay={true}
-      interval={5000}
-      transitionTime={3000}
+      responsive={responsive}
+      infinite={true}
     >
-      <div className="cont-cat" href="#">
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Frutas y Verduras</p>
-        </div>
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Abarrotes</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Hogar</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Lideres</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Otros</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
       </div>
-         <div className="cont-cat" href="#">
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Frutas y Verduras</p>
-        </div>
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Abarrotes</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Hogar</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Lideres</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Otros</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
       </div>
-         <div className="cont-cat" href="#">
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Frutas y Verduras</p>
-        </div>
-        <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Abarrotes</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Hogar</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Lideres</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Otros</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
-         <div>
-          <img src="img/logo/75x67.png" alt="imagen" className="cat-img" />
-          <p>Aseo Personal</p>
-        </div>
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
       </div>
-      
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
+      </div>
+       <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
+      </div>
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
+      </div>
+       <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
+      </div>
+      <div className="img-cat">
+        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
+        <label htmlFor="basic-url" className="text-cat">
+          Aseo Hogar
+        </label>
+      </div>
     </Carousel>
   );
 }

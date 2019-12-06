@@ -6,7 +6,7 @@ import Slider from "../slider";
 import Categorias from "../categorias";
 import { Nav } from "react-bootstrap";
 import "./styles.css";
-
+var items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 export default function pages(props) {
   return (
     <Fragment id="general">
@@ -19,7 +19,9 @@ export default function pages(props) {
       </Nav>
       <div id="cuerpo">
         <Slider />
-        <Categorias />
+        <div>
+          <Categorias/>
+        </div>
       </div>
     </Fragment>
   );
