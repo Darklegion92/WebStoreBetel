@@ -22,11 +22,13 @@ export default function pages(props) {
       </Nav>
       <div id="cuerpo">
         <Slider />
-        <Categorias />
-        <Secciones/>
+        <div Style="margin:20px 0px">
+          <Categorias />
+        </div>
+        <Secciones />
       </div>
-      <Nav className="sticky-bottom">
-        <Footer/>
+      <Nav id="footer" className="sticky-bottom">
+        <Footer />
       </Nav>
     </Fragment>
   );
