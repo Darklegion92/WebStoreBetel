@@ -1,30 +1,63 @@
-import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import React, { useState } from "react";
+import ItemsCarousel from "react-items-carousel";
+import styled from 'styled-components';
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle
+} from "react-icons/io";
 import "./styles.css";
 
-export default function index() {
+export default () => {
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const Wrapper = styled.div`
+  padding: 0 0px;
+  margin: 0 auto;
+`;
+
   return (
-    <Carousel
-      showArrows={false}
-      showStatus={false}
-      showThumbs={false}
-      infiniteLoop={true}
-      autoPlay={true}
-      transitionTime={1000}
-    >
-      <div>
-        <img src="img/slider/01.jpg" alt="imagen"/>
-      </div>
-      <div>
-        <img src="img/slider/02.jpg" alt="imagen"/>
-      </div>
-      <div>
-        <img src="img/slider/03.jpg" alt="imagen"/>
-      </div>
-    </Carousel>
+    <Wrapper>
+      <ItemsCarousel
+        infiniteLoop
+        gutter={12}
+        numberOfCards={1}
+        activeItemIndex={activeItemIndex}
+        requestToChangeActive={setActiveItemIndex}
+        leftChevron={<IoIosArrowDropleftCircle size="50" color="rgba(124, 122, 122, 0.486)"/>}
+        rightChevron={<IoIosArrowDroprightCircle  size="50" color="rgba(124, 122, 122, 0.486)"/>}
+      
+      >
+        <div style={{ height: 335, background: "#EEE" }}>
+          <img
+            className="d-block w-100"
+            src="img/slider/01.jpg"
+            alt="First slide"
+          />
+        </div>
+        <div style={{ height: 335, background: "#EEE" }}>
+          <img
+            className="d-block w-100"
+            src="img/slider/02.jpg"
+            alt="First slide"
+          />
+        </div>
+        <div style={{ height: 335, background: "#EEE" }}>
+          <img
+            className="d-block w-100"
+            src="img/slider/04.jpg"
+            alt="First slide"
+          />
+        </div>
+        <div style={{ height: 335, background: "#EEE" }}>
+          <img
+            className="d-block w-100"
+            src="img/slider/04.jpg"
+            alt="First slide"
+          />
+        </div>
+      </ItemsCarousel>
+    </Wrapper>
   );
-}
+};
 
 /* <Carousel
       nextIcon=<IoIosArrowDroprightCircle size="50px" />
