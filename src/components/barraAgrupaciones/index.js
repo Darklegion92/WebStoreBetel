@@ -1,89 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import { Nav, NavDropdown } from "react-bootstrap";
+import { WrapperConsumer } from "../../store";
+
 import "./styles.css";
-export default function index() {
-  return (
-    <Nav className="justify-content-center">
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-      <NavDropdown
-        title="Familias"
-        id="basic-nav-dropdown"
-        className="cont-Agr"
-      >
-        <NavDropdown.Item href="#action/3.1">Frutas</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Verduras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Otros</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-    </Nav>
-  );
+
+class barraAgrupaciones extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.context.agrupaciones !== this.props.context.agrupaciones;
+  }
+  render() {
+    const { agrupaciones } = this.props.context;
+    return (
+      <Nav>
+        {agrupaciones.map(item => {
+          return (
+            <NavDropdown
+              title={item.nombreFamilia}
+              id="basic-nav-dropdown"
+              className="cont-Agr"
+            >
+              {item.grupos.map(i => {
+                return (
+                  <NavDropdown.Item
+                    href={"/tienda/" + item.nombreFamilia + "/" + i.nombreGrupo}
+                  >
+                    {i.nombreGrupo}
+                  </NavDropdown.Item>
+                );
+              })}
+              <NavDropdown.Divider />
+            </NavDropdown>
+          );
+        })}
+      </Nav>
+    );
+  }
 }
+export default WrapperConsumer(barraAgrupaciones);

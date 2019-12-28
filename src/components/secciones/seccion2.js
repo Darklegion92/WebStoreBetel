@@ -1,21 +1,21 @@
-import React from 'react'
-import './styles.css'
-export default function seccion2(props) {
-    return (
-        <div className="cont-sec2">
-            <div className="title-sec2">
-                {props.title}
-            </div>
-            <div className="body01-sec2">
-                <img alt="img01" src="img/secciones/01.webp"/>
-                <img alt="img01" src="img/secciones/02.webp"/>
-                <img alt="img01" src="img/secciones/03.webp"/>
-            </div>
-            <div className="body01-sec2">
-                <img alt="img01" src="img/secciones/04.webp"/>
-                <img alt="img01" src="img/secciones/05.webp"/>
-                <img alt="img01" src="img/secciones/06.webp"/>
-            </div>
-        </div>
-    )
+import React from "react";
+import "./styles.css";
+export default function seccion2({
+  datos: { titulo, img1, img2, img3, img4, img5, img6 }
+}) {
+  return (
+    <div className="cont-sec2">
+      <div className="title-sec2">{titulo}</div>
+      <div className="body01-sec2">
+        <img alt="img01" src={img1} />
+        <img alt="img01" src={img2} />
+        <img alt="img01" src={img3} />
+      </div>
+      <div className="body01-sec2">
+        <img alt="img01" src={img4} />
+        <img alt="img01" src={img5} />
+        <img alt="img01" src={img6} />
+      </div>
+    </div>
+  );
 }

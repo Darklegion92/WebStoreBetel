@@ -1,81 +1,63 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import ItemsCarousel from "react-items-carousel";
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle
 } from "react-icons/io";
+import { WrapperConsumer } from "../../store";
 import "./styles.css";
 
-export default () => {
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const Wrapper = styled.div`
-  padding: 0 0px;
-  margin: 0 auto;
-`;
+class slider extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.context.imageSlider !== this.props.context.imageSlider;
+  }
 
-  return (
-    <Wrapper>
-      <ItemsCarousel
-        infiniteLoop
-        gutter={12}
-        numberOfCards={1}
-        activeItemIndex={activeItemIndex}
-        requestToChangeActive={setActiveItemIndex}
-        leftChevron={<IoIosArrowDropleftCircle size="50" color="rgba(124, 122, 122, 0.486)"/>}
-        rightChevron={<IoIosArrowDroprightCircle  size="50" color="rgba(124, 122, 122, 0.486)"/>}
-      
-      >
-        <div >
-          <img
-            className="d-block w-100"
-            src="img/slider/01.jpg"
-            alt="First slide"
-          />
-        </div>
-        <div>
-          <img
-            className="d-block w-100"
-            src="img/slider/02.jpg"
-            alt="First slide"
-          />
-        </div>
-        <div>
-          <img
-            className="d-block w-100"
-            src="img/slider/04.jpg"
-            alt="First slide"
-          />
-        </div>
-        <div>
-          <img
-            className="d-block w-100"
-            src="img/slider/04.jpg"
-            alt="First slide"
-          />
-        </div>
-      </ItemsCarousel>
-    </Wrapper>
-  );
-};
-
-/* <Carousel
-      nextIcon=<IoIosArrowDroprightCircle size="50px" />
-      prevIcon=<IoIosArrowDropleftCircle size="50px" />
-      fade = "true"
-    >
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="img/slider/01.jpg"
-          alt="First slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="img/slider/03.jpg"
-          alt="Third slide"
-        />
-      </Carousel.Item>
-    </Carousel>*/
+  render() {
+    const Wrapper = styled.div`
+      padding: 0 0px;
+      margin: 0 auto;
+    `;
+    const {
+      activeItemIndex,
+      setActiveItemIndex,
+      imageSlider
+    } = this.props.context;
+    return (
+      <Wrapper>
+        <ItemsCarousel
+          infiniteLoop
+          gutter={20}
+          numberOfCards={1}
+          activeItemIndex={activeItemIndex}
+          requestToChangeActive={setActiveItemIndex}
+          leftChevron={
+            <IoIosArrowDropleftCircle
+              size="50"
+              color="rgba(124, 122, 122, 0.486)"
+            />
+          }
+          rightChevron={
+            <IoIosArrowDroprightCircle
+              size="50"
+              color="rgba(124, 122, 122, 0.486)"
+            />
+          }
+        >
+          {imageSlider.map(item => {
+            return (
+              <a href={item.urlSlider}>
+                <img
+                  className="d-block w-100"
+                  src={item.imgSlider}
+                  alt={item.nombreSlider}
+                />
+              </a>
+            );
+          })}
+        </ItemsCarousel>
+      </Wrapper>
+    );
+  }
+}
+export default WrapperConsumer(slider);

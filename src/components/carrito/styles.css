@@ -1,0 +1,19 @@
+.sinItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.sinItems>.btn{
+    background: var(--color-principal);
+    border:var(--color-principal);
+    margin-top: 5rem;
+    box-shadow: none;
+}
+
+.sinItems>.btn:hover{
+    background: var(--color-secundario);
+    border:var(--color-principal);
+}

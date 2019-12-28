@@ -61,6 +61,29 @@
   margin-left: 10px;
 }
 
+.carrito-logo{
+  position: relative;
+  display: inline-block;
+}
+
+.carrito-cantidad{
+  display: flex;
+  position: absolute;
+  padding: 0;   
+  top: 0;       
+  right: 0.1rem;
+  background: var(--color-secundario);
+  width: 23px;
+  height: 23px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+  color:white
+}
 /*moviles vertical*/
 @media (max-width: 575px){
   .con-barPri {
@@ -78,6 +101,9 @@
     border-bottom-width: 0.1rem;
   }
 }
+
+
+
 /*moviles horizontal*/
 @media (max-width: 767px){
   

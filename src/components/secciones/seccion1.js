@@ -1,15 +1,15 @@
 import React from 'react'
+import { WrapperConsumer } from "../../store";
 import './styles.css'
 
-export default function seccion1() {
+ const seccion1=({datos}) =>{
     return (
         <div className= "cont-sec1">
-            
-            <img className = "title-sec1" alt="banner" src="img/banner/01.jpg" />
-           
+            <img className = "title-sec1" alt="seccion1" src={datos.img1} />
             <div className = "body-sec1">
-                Entregas antes del 24 de diciembre en 5 ciudades: Medellín, Bogotá, Cali, Barranquilla y Bucaramanga
+               {datos.texto1}
             </div>
         </div>
     )
 }
+export default WrapperConsumer(seccion1)

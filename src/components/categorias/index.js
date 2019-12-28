@@ -1,8 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
 import { Image } from "react-bootstrap";
 import "./styles.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { WrapperConsumer } from "../../store";
+
+class categorias extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.context.agrupaciones !== this.props.context.agrupaciones;
+  }
+  render() {
+    const { agrupaciones } = this.props.context;
+    return (
+      <Carousel responsive={responsive} infinite={true}>
+        {agrupaciones.map(item => {
+          return (
+            <div className="img-cat" href="/tienda">
+              <Image
+                src={"img/logo/" + item.imgFamilia}
+                roundedCircle
+                thumbnail
+              />
+              <label htmlFor="basic-url" className="text-cat">
+                {item.nombreFamilia}
+              </label>
+            </div>
+          );
+        })}
+      </Carousel>
+    );
+  }
+}
 
 const responsive = {
   superLargeDesktop: {
@@ -24,57 +52,4 @@ const responsive = {
   }
 };
 
-export default function categorias() {
-  return (
-    <Carousel responsive={responsive} infinite={true}>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-      <div className="img-cat">
-        <Image src="img/logo/75x67.png" roundedCircle thumbnail />
-        <label htmlFor="basic-url" className="text-cat">
-          Aseo Hogar
-        </label>
-      </div>
-    </Carousel>
-  );
-}
+export default WrapperConsumer(categorias);
