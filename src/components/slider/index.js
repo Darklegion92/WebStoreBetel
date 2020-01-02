@@ -5,12 +5,14 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle
 } from "react-icons/io";
-import { WrapperConsumer } from "../../store";
+import { WrapperConsumer, ActionsTypes} from "../../store";
+import CONSTANTES from '../../config/CONSTANTES'
 import "./styles.css";
 
 class slider extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.context.imageSlider !== this.props.context.imageSlider;
+ shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.context.imageSlider !== this.props.context.imageSlider ||
+    nextProps.context.activeItemIndex !== this.props.context.activeItemIndex;
   }
 
   render() {
@@ -20,7 +22,7 @@ class slider extends Component {
     `;
     const {
       activeItemIndex,
-      setActiveItemIndex,
+      dispatch,
       imageSlider
     } = this.props.context;
     return (
@@ -30,7 +32,7 @@ class slider extends Component {
           gutter={20}
           numberOfCards={1}
           activeItemIndex={activeItemIndex}
-          requestToChangeActive={setActiveItemIndex}
+          requestToChangeActive={e=>dispatch({type:ActionsTypes.setActiveItemIndex,value:e})}
           leftChevron={
             <IoIosArrowDropleftCircle
               size="50"
@@ -49,7 +51,7 @@ class slider extends Component {
               <a href={item.urlSlider}>
                 <img
                   className="d-block w-100"
-                  src={item.imgSlider}
+                  src={CONSTANTES.APIREST+"/"+item.imgSlider}
                   alt={item.nombreSlider}
                 />
               </a>

@@ -1,16 +1,47 @@
 import React, { Component } from "react";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { WrapperConsumer } from "../../store";
+import { WrapperConsumer, ActionsTypes } from "../../store";
+import CONSTANTES from "../../config/CONSTANTES";
+import axios from "axios";
 import "./styles.css";
 
 class Footer extends Component {
+componentDidMount() {
+    this.cargarDatosIniciales();
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.context.mensajeEmpresa !== this.props.context.mensajeEmpresa &&
-      nextProps.context.sucursales !== this.props.context.sucursales &&
+      nextProps.context.mensajeEmpresa !== this.props.context.mensajeEmpresa ||
+      nextProps.context.sucursales !== this.props.context.sucursales ||
       nextProps.context.redesSociales !== this.props.context.redesSociales
     );
   }
+
+  cargarDatosIniciales = async () => {
+    const { dispatch } = this.props.context;
+
+    const resSucursales = await axios.get(
+      CONSTANTES.APIREST + "/datos/sucursales"
+    );
+    const sucursales = resSucursales.data;
+    const resRedesSociales = await axios.get(
+      CONSTANTES.APIREST + "/datos/redes"
+    );
+    const redesSociales = resRedesSociales.data;
+    const resMensajeEmpresa = await axios.get(CONSTANTES.APIREST + "/datos");
+    const mensajeEmpresa = resMensajeEmpresa.data[0].valorConfiguracion;
+
+    dispatch({
+      type: ActionsTypes.CAMBIARSTATE,
+      value: {
+        sucursales,
+        redesSociales,
+        mensajeEmpresa
+      }
+    });
+    
+  };
   render() {
     const {
       context: { mensajeEmpresa, sucursales, redesSociales }

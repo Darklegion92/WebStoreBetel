@@ -1,19 +1,21 @@
 import React, { Component, createContext } from "react";
 import reducer from "./reducer";
 import ActionsTypes from "./actionsTypes";
+import CONSTANTES from "../config/CONSTANTES";
+import axios from "axios";
 const { Provider, Consumer } = createContext();
 
+
 class ContextStore extends Component {
-  constructor() {
-    super();
-    this.state = {
+ 
+    state = {
       autenticado: "",
       valorFiltro: "",
       activePage: 1,
-      setActiveItemIndex: this.setActiveItemIndex,
-      activeItemIndex: null,
+      activeItemIndex: 0,
       secciones: [],
       sucursales: [],
+      montarArticulos:true,
       redesSociales: [
         {
           urlRedSocial: "##"
@@ -25,7 +27,9 @@ class ContextStore extends Component {
           urlRedSocial: "##"
         }
       ],
-      filtros: [],
+      filtros: {texto:"",
+                familia:"",
+                marca:""},
       mensajeEmpresa: "",
       familiaSelect: "",
       grupoSelect: "",
@@ -41,17 +45,38 @@ class ContextStore extends Component {
         this.setState(response);
       }
     };
+  componentDidUpdate(){
+    if(this.state.montarArticulos){
+      this.cargarArticulos()
+    }
   }
   render() {
     return <Provider value={this.state}>{this.props.comp}</Provider>;
   }
   /*Funciones*/
 
-  setActiveItemIndex = dato => {
-    this.setState({
-      activeItemIndex: dato
-    });
-  };
+  async cargarArticulos(){
+    this.setState({montarArticulos:false})
+    const { filtros } = this.state;
+    
+    if (filtros.texto) {
+        const resArticulos = await axios.get(
+        CONSTANTES.APIREST + "/articulos/lista/" + filtros.texto
+      );
+      const articulos = resArticulos.data;
+      this.setState({
+        articulos
+      });
+    } else {
+      const resArticulos = await axios.get(
+        CONSTANTES.APIREST + "/articulos/lista/"
+      );
+      const articulos = resArticulos.data;
+         this.setState({
+        articulos
+      });
+    }
+  }
 }
 const WrapperConsumer = Component => {
   return props => {

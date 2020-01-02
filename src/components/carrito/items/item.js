@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Image,Button } from "react-bootstrap";
 import { FaTrash } from 'react-icons/fa';
+import CONSTANTES from '../../../config/CONSTANTES'
 import "./styles.css";
 
 export default function item(props) {
@@ -9,7 +10,7 @@ export default function item(props) {
     <Container >
       <Row className="cont-Items">
         <Col xs={6} md={2}>
-          <Image src={datos.rutaImg} rounded className="img-car" />
+          <Image src={CONSTANTES.APIREST+"/img/articulos/"+datos.codigoArticulo+"webp"} rounded className="img-car" />
         </Col>
         <Col xs={6} md={4}>
           <h1>{datos.nombre}</h1>

@@ -14,8 +14,9 @@ import { FiTruck } from "react-icons/fi";
 import { MdStore, MdLocalGroceryStore } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
 import { WrapperConsumer, ActionsTypes } from "../../store";
+import CONSTANTES from '../../config/CONSTANTES'
 
-const logo = "img/logo/75x59.png";
+const logo = CONSTANTES.APIREST+"/img/logo/75x59.png";
 
 class barraPrincipal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -33,13 +34,17 @@ class barraPrincipal extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <InputGroup>
             <FormControl
+              name="valorFiltro"
               placeholder="¿Qué producto busca?"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               className="shadow-sm p-3 mb-5 bg-white rounded campoBusqueda"
               onChange={e =>
-                dispatch({ type: ActionsTypes.onChange, value: e.target.value })
+                dispatch({ type: ActionsTypes.onChange, value: e.target })
               }
+              onKeyPress={e =>
+                dispatch({ type: ActionsTypes.onKeyPress, value: e })
+                }
             />
             <InputGroup.Append className="shadow-sm mb-5 bg-white rounded campoBusqueda">
               <InputGroup.Text id="basic-addon2">

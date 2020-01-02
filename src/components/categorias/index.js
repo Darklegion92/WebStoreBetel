@@ -3,6 +3,7 @@ import { Image } from "react-bootstrap";
 import "./styles.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import CONSTANTES from "../../config/CONSTANTES";
 import { WrapperConsumer } from "../../store";
 
 class categorias extends Component {
@@ -17,7 +18,7 @@ class categorias extends Component {
           return (
             <div className="img-cat" href="/tienda">
               <Image
-                src={"img/logo/" + item.imgFamilia}
+                src={CONSTANTES.APIREST + "/img/logo/" + item.imgFamilia}
                 roundedCircle
                 thumbnail
               />

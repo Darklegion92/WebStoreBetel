@@ -11,7 +11,7 @@ export default () => (
       <Route exact path="/" render={props => <ContextStore comp={<App />} />} />
       <Route
         exact
-        path="/tienda"
+        path="/tienda/:filtro"
         render={props => <ContextStore comp={<Maker />} />}
       />
       }
