@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ItemsCarousel from "react-items-carousel";
 import styled from "styled-components";
+import {Link} from 'react-router-dom'
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle
@@ -16,6 +17,7 @@ class slider extends Component {
   }
 
   render() {
+    const {valorFiltro} = this.props.context
     const Wrapper = styled.div`
       padding: 0 0px;
       margin: 0 auto;
@@ -48,13 +50,13 @@ class slider extends Component {
         >
           {imageSlider.map(item => {
             return (
-              <a href={item.urlSlider}>
+              <Link to={`${item.urlSlider}/${valorFiltro}`}>
                 <img
                   className="d-block w-100"
                   src={CONSTANTES.APIREST+"/"+item.imgSlider}
                   alt={item.nombreSlider}
                 />
-              </a>
+              </Link>
             );
           })}
         </ItemsCarousel>

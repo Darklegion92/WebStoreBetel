@@ -5,8 +5,11 @@ import { WrapperConsumer } from "../../../store";
 import "./styles.css";
 
 class items extends Component {
+
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.context.articulos !== this.props.context.articulos;
+    return (
+      nextProps.context.articulos !== this.props.context.articulos
+    );
   }
   render() {
     const {

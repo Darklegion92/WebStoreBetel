@@ -2,19 +2,54 @@ import React, { Fragment, Component } from "react";
 import { Nav } from "react-bootstrap";
 import BarraServicios from "../barraServicios";
 import BarraPrincipal from "../barraPrincipal";
-import { WrapperConsumer } from "../../store";
+import { WrapperConsumer, ActionsTypes } from "../../store";
 import Items from "./items";
 import Filter from "./filter";
 import Footer from "../footer";
 import "./styles.css";
 
 class maker extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
+  componentDidMount() {
+    const { dispatch } = this.props.context;
+    if (this.props.match.params.filtro) {
+      dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: { texto: this.props.match.params.filtro.toUpperCase() }
+        }
+      });
+    }
   }
-  render() {
-    console.log(this);
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.props.context.articulos !== nextProps.context.articulos ||
+      this.props.match.params.filtro !== nextProps.match.params.filtro
+    );
+  }
+  componentDidUpdate() {
+    console.log("actualizando");
     
+      const { dispatch } = this.props.context;
+    if (this.props.match.params.filtro) {
+      dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: { texto: this.props.match.params.filtro.toUpperCase() },
+          montarArticulos: true
+        }
+      });
+    }else{
+       dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: { texto: this.props.context.valorFiltro},
+          montarArticulos: true
+        }
+      });
+    }
+  }
+
+  render() {
     return (
       <Fragment>
         <Nav className="flex-column sticky-top fixed-top bg-white">

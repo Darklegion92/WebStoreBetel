@@ -9,24 +9,38 @@ import {
   InputGroup,
   Image
 } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import { IoMdPerson } from "react-icons/io";
 import { FiTruck } from "react-icons/fi";
 import { MdStore, MdLocalGroceryStore } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
 import { WrapperConsumer, ActionsTypes } from "../../store";
-import CONSTANTES from '../../config/CONSTANTES'
+import CONSTANTES from "../../config/CONSTANTES";
 
-const logo = CONSTANTES.APIREST+"/img/logo/75x59.png";
+const logo = CONSTANTES.APIREST + "/img/logo/75x59.png";
 
 class barraPrincipal extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.context.carItems !== nextProps.context.carItems;
+  state = {
+    redirect: false
+  };
+
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to={"/tienda/" + this.props.context.valorFiltro} />;
+    }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.props.context.carItems !== nextProps.context.carItems ||
+      this.state !== nextState
+    );
+  }
   render() {
     const { carItems, dispatch } = this.props.context;
     return (
       <Navbar bg="light" expand="lg" className="con-barPri">
+        {this.renderRedirect()}
         <Navbar.Brand href="/">
           <Image src={logo} rounded />
         </Navbar.Brand>
@@ -42,9 +56,13 @@ class barraPrincipal extends Component {
               onChange={e =>
                 dispatch({ type: ActionsTypes.onChange, value: e.target })
               }
-              onKeyPress={e =>
-                dispatch({ type: ActionsTypes.onKeyPress, value: e })
+              onKeyPress={e => {
+                if (e.key === "Enter") {
+                  this.setState({
+                    redirect: true
+                  });
                 }
+              }}
             />
             <InputGroup.Append className="shadow-sm mb-5 bg-white rounded campoBusqueda">
               <InputGroup.Text id="basic-addon2">

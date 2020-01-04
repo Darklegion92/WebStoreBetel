@@ -5,49 +5,45 @@ import CONSTANTES from "../config/CONSTANTES";
 import axios from "axios";
 const { Provider, Consumer } = createContext();
 
-
 class ContextStore extends Component {
- 
-    state = {
-      autenticado: "",
-      valorFiltro: "",
-      activePage: 1,
-      activeItemIndex: 0,
-      secciones: [],
-      sucursales: [],
-      montarArticulos:true,
-      redesSociales: [
-        {
-          urlRedSocial: "##"
-        },
-        {
-          urlRedSocial: "##"
-        },
-        {
-          urlRedSocial: "##"
-        }
-      ],
-      filtros: {texto:"",
-                familia:"",
-                marca:""},
-      mensajeEmpresa: "",
-      familiaSelect: "",
-      grupoSelect: "",
-      subGrupoSelect: "",
-      marcaSelect: "",
-      marcas: [],
-      articulos: [],
-      carItems: [],
-      imageSlider: [],
-      agrupaciones: [],
-      dispatch: action => {
-        const response = reducer(this.state, action);
-        this.setState(response);
+  state = {
+    autenticado: "",
+    valorFiltro: "",
+    activePage: 1,
+    activeItemIndex: 0,
+    secciones: [],
+    sucursales: [],
+    montarArticulos: true,
+    redesSociales: [
+      {
+        urlRedSocial: "##"
+      },
+      {
+        urlRedSocial: "##"
+      },
+      {
+        urlRedSocial: "##"
       }
-    };
-  componentDidUpdate(){
-    if(this.state.montarArticulos){
-      this.cargarArticulos()
+    ],
+    filtros: { texto: "", familia: "", marca: "" },
+    mensajeEmpresa: "",
+    familiaSelect: "",
+    grupoSelect: "",
+    subGrupoSelect: "",
+    marcaSelect: "",
+    marcas: [],
+    articulos: [],
+    carItems: [],
+    imageSlider: [],
+    agrupaciones: [],
+    dispatch: action => {
+      const response = reducer(this.state, action);
+      this.setState(response);
+    }
+  };
+  componentDidUpdate() {
+    if (this.state.montarArticulos) {
+      this.cargarArticulos();
     }
   }
   render() {
@@ -55,12 +51,12 @@ class ContextStore extends Component {
   }
   /*Funciones*/
 
-  async cargarArticulos(){
-    this.setState({montarArticulos:false})
+  async cargarArticulos() {
+    this.setState({ montarArticulos: false });
     const { filtros } = this.state;
-    
+
     if (filtros.texto) {
-        const resArticulos = await axios.get(
+      const resArticulos = await axios.get(
         CONSTANTES.APIREST + "/articulos/lista/" + filtros.texto
       );
       const articulos = resArticulos.data;
@@ -72,7 +68,7 @@ class ContextStore extends Component {
         CONSTANTES.APIREST + "/articulos/lista/"
       );
       const articulos = resArticulos.data;
-         this.setState({
+      this.setState({
         articulos
       });
     }

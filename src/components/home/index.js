@@ -14,6 +14,12 @@ import "./styles.css";
 
 class Home extends Component {
 
+  constructor(props){
+    super(props)
+    console.log(this.props);
+    
+  }
+
   componentDidMount() {
     this.cargarDatosIniciales();
   }
