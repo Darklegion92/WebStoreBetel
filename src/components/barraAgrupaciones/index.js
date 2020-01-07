@@ -8,6 +8,7 @@ class barraAgrupaciones extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.context.agrupaciones !== this.props.context.agrupaciones;
   }
+  
   render() {
     const { agrupaciones } = this.props.context;
     return (

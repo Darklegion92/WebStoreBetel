@@ -19,6 +19,7 @@ class items extends Component {
       <CardDeck className="content-card">
         {articulos.map(articulo => {
           return <Item datos={articulo} />;
+          
         })}
       </CardDeck>
     );

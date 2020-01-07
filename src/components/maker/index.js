@@ -9,44 +9,93 @@ import Footer from "../footer";
 import "./styles.css";
 
 class maker extends Component {
+  state = {
+    actualizar: true
+  };
   componentDidMount() {
-    const { dispatch } = this.props.context;
-    if (this.props.match.params.filtro) {
+    const { dispatch, filtros } = this.props.context;
+    const texto = this.props.location.search;
+
+    if (this.props.location.search) {
       dispatch({
         type: ActionsTypes.CAMBIARSTATE,
         value: {
-          filtros: { texto: this.props.match.params.filtro.toUpperCase() }
+          filtros: {
+            texto: texto.substring(7).toUpperCase(),
+            familia: filtros.familia,
+            grupo: filtros.grupo
+          },
+          montarArticulos: true
+        }
+      });
+    }
+
+    if (this.props.match.params.familia) {
+      dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: { familia: this.props.match.params.familia.toUpperCase() },
+          montarArticulos: true
+        }
+      });
+    }
+    if (this.props.match.params.grupo) {
+      dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: {
+            grupo: this.props.match.params.grupo.toUpperCase(),
+            familia: this.props.match.params.familia.toUpperCase()
+          },
+          montarArticulos: true
+        }
+      });
+    }
+    if (this.props.match.params.subgrupo) {
+      dispatch({
+        type: ActionsTypes.CAMBIARSTATE,
+        value: {
+          filtros: {
+            subgrupo: this.props.match.params.subgrupo.toUpperCase(),
+            grupo: this.props.match.params.grupo.toUpperCase(),
+            familia: this.props.match.params.familia.toUpperCase()
+          },
+          montarArticulos: true
         }
       });
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.context.articulos !== nextProps.context.articulos ||
-      this.props.match.params.filtro !== nextProps.match.params.filtro
-    );
+    return this.props.match.params.filtro !== this.props.context.filtros.texto;
   }
   componentDidUpdate() {
-    console.log("actualizando");
-    
-      const { dispatch } = this.props.context;
-    if (this.props.match.params.filtro) {
-      dispatch({
-        type: ActionsTypes.CAMBIARSTATE,
-        value: {
-          filtros: { texto: this.props.match.params.filtro.toUpperCase() },
-          montarArticulos: true
+    const { dispatch } = this.props.context;
+
+    try {
+      const texto = this.props.location.search;
+      if (
+        this.props.context.filtros.texto.toUpperCase() !==
+        texto.substring(7).toUpperCase()
+      )
+        if (this.props.location.search) {
+          dispatch({
+            type: ActionsTypes.CAMBIARSTATE,
+            value: {
+              filtros: { texto: texto.substring(7).toUpperCase() },
+              montarArticulos: true
+            }
+          });
+          this.setState({ actualizar: false });
+        } else {
+          dispatch({
+            type: ActionsTypes.CAMBIARSTATE,
+            value: {
+              filtros: { texto: "" },
+              montarArticulos: true
+            }
+          });
         }
-      });
-    }else{
-       dispatch({
-        type: ActionsTypes.CAMBIARSTATE,
-        value: {
-          filtros: { texto: this.props.context.valorFiltro},
-          montarArticulos: true
-        }
-      });
-    }
+    } catch (e) {}
   }
 
   render() {

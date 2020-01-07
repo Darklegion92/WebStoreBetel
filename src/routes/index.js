@@ -16,10 +16,19 @@ export default () => (
       />
       <Route
         exact
-        path="/tienda/:filtro"
+        path="/tienda/:familia"
         render={props => <ContextStore comp={<Maker {...props}/>} />}
       />
-      }
+       <Route
+        exact
+        path="/tienda/:familia/:grupo"
+        render={props => <ContextStore comp={<Maker {...props}/>} />}
+      />
+       <Route
+        exact
+        path="/tienda/:familia/:grupo/:subgrupo"
+        render={props => <ContextStore comp={<Maker {...props}/>} />}
+      />
       <Route
         exact
         path="/carrito"

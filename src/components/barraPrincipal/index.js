@@ -26,13 +26,14 @@ class barraPrincipal extends Component {
 
   renderRedirect() {
     if (this.state.redirect) {
-      return <Redirect to={"/tienda/" + this.props.context.valorFiltro} />;
+      return <Redirect to={"/tienda?texto=" + this.props.context.valorFiltro} />;
     }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.props.context.carItems !== nextProps.context.carItems ||
+       this.props.context.valorFiltro !== nextProps.context.valorFiltro ||
       this.state !== nextState
     );
   }
@@ -53,13 +54,17 @@ class barraPrincipal extends Component {
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               className="shadow-sm p-3 mb-5 bg-white rounded campoBusqueda"
-              onChange={e =>
+              value = {this.props.context.valorFiltro}
+              onChange={e =>{
+                this.setState({
+                    redirect: false,
+                  });
                 dispatch({ type: ActionsTypes.onChange, value: e.target })
-              }
+              }}
               onKeyPress={e => {
                 if (e.key === "Enter") {
                   this.setState({
-                    redirect: true
+                    redirect: true,
                   });
                 }
               }}

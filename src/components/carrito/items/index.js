@@ -1,17 +1,15 @@
 import React from "react";
-import Item from './item'
+import Item from "./item";
 import { WrapperConsumer } from "../../../store";
-import './styles.css'
-const items= ({context:{carItems}}) =>{
-  return (
-      <div>
-            {carItems.map(item=>{
-                return <Item datos={item}/>
-            })}
-      </div>
-  )
-}
+import "./styles.css";
+const items = ({ context: { carItems } }) => {
+   return (
+    <div>
+      {carItems.map((item,i) => {
+        return <Item datos={item} index={i} />;
+      })}
+    </div>
+  );
+};
 
-
-export default WrapperConsumer(items)
-
+export default WrapperConsumer(items);

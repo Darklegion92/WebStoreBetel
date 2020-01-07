@@ -2,10 +2,15 @@
   margin: 1rem;
   max-width: 300px;
 }
-.panelFiltro>h1{
+.panelFiltro>div>h1{
     font-size: 20px;
     color:rgb(202, 197, 197);
     margin-top: 2rem;
+}
+.panelFiltro>h1{
+  font-size: 20px;
+  color:rgb(202, 197, 197);
+  margin-top: 2rem;
 }
 .filtros {
   display: flex;

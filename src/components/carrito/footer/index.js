@@ -4,11 +4,11 @@ import { Row, Col, Button } from "react-bootstrap";
 import { TiShoppingCart } from "react-icons/ti";
 import "./styles.css";
 
-function footer({ context: { carItems } }) {
+function footer({ context: { carItems,formatNumber } }) {
   let total = 0;
   if (carItems) {
     carItems.map(item => {
-      total = total + item.cantidad * item.precio;
+      total = total + item.cantidad * item.precioArticulo;
     });
   }
   return (
@@ -21,7 +21,7 @@ function footer({ context: { carItems } }) {
           <h1>TOTAL COMPRA</h1>
         </Col>
         <Col xs={6} md={3}>
-          <h1>{total}</h1>
+          <h1>{formatNumber.new(total,"$")}</h1>
         </Col>
         <Col xs={6} md={1}>
         <Button>Confirmar</Button>

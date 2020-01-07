@@ -13,13 +13,6 @@ import { WrapperConsumer, ActionsTypes } from "../../store";
 import "./styles.css";
 
 class Home extends Component {
-
-  constructor(props){
-    super(props)
-    console.log(this.props);
-    
-  }
-
   componentDidMount() {
     this.cargarDatosIniciales();
   }
@@ -33,13 +26,17 @@ class Home extends Component {
     const agrupaciones = resAgrupaciones.data;
     const resSecciones = await axios.get(CONSTANTES.APIREST + "/secciones");
     const secciones = resSecciones.data;
-    const resSucursales = await axios.get(CONSTANTES.APIREST + "/datos/sucursales");
+    const resSucursales = await axios.get(
+      CONSTANTES.APIREST + "/datos/sucursales"
+    );
     const sucursales = resSucursales.data;
-    const resRedesSociales = await axios.get(CONSTANTES.APIREST + "/datos/redes");
+    const resRedesSociales = await axios.get(
+      CONSTANTES.APIREST + "/datos/redes"
+    );
     const redesSociales = resRedesSociales.data;
-    const resMensajeEmpresa = await axios.get(CONSTANTES.APIREST + "/datos");    
+    const resMensajeEmpresa = await axios.get(CONSTANTES.APIREST + "/datos");
     const mensajeEmpresa = resMensajeEmpresa.data[0].valorConfiguracion;
-    
+
     const { dispatch } = this.props.context;
 
     dispatch({
@@ -54,7 +51,7 @@ class Home extends Component {
       }
     });
   };
-  
+
   render() {
     return (
       <Fragment>

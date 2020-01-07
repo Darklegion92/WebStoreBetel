@@ -50,6 +50,20 @@
   box-shadow: none!important;
 }
 
+.btn-comprado {
+  background-color: var(--color-principal) !important;
+  border-color: var(--color-principal) !important;
+  box-shadow: none!important;
+  width: 100%;
+}
+.btn-comprado:focus,
+.btn-comprado:hover,
+.btn-comprado:active {
+  background-color: var(--color-principal) !important;
+  border-color: var(--color-principal) !important;
+  box-shadow: none!important;
+}
+
 .content-card{
   grid-column-start: 2;
   grid-column-end: 3;
