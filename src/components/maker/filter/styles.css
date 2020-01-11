@@ -63,7 +63,17 @@
     margin-bottom: 2rem;
     font-size: 15px;
 }
+.grupo-filtro>li{
+  list-style:none;
+  cursor:pointer;
+}
+.grupo-filtro>li:hover{
+  color:var( --color-secundario);
+  padding: 5px;
+  text-shadow: var(--color-principal);
+}
 .borde{
     padding-bottom: 1rem;
     border-bottom: solid 1px gray;
+    
 }

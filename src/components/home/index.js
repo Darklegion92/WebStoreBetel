@@ -7,6 +7,7 @@ import Slider from "../slider";
 import Categorias from "../categorias";
 import Secciones from "../secciones";
 import Footer from "../footer";
+import ModalInicio from '../modalInicio'
 import CONSTANTES from "../../config/CONSTANTES";
 import axios from "axios";
 import { WrapperConsumer, ActionsTypes } from "../../store";
@@ -15,6 +16,13 @@ import "./styles.css";
 class Home extends Component {
   componentDidMount() {
     this.cargarDatosIniciales();
+  }
+  state={
+    show:true,
+  }
+
+  cerrarModal=e=>{
+    this.setState({show:false})
   }
 
   cargarDatosIniciales = async () => {
@@ -67,11 +75,14 @@ class Home extends Component {
           <div Style="margin:20px 0px">
             <Categorias />
           </div>
+          <div id="secciones">
           <Secciones />
+        </div>
         </div>
         <Nav id="footer" className="sticky-bottom">
           <Footer />
         </Nav>
+        <ModalInicio show = {this.state.show} onClick = {this.cerrarModal}/>
       </Fragment>
     );
   }

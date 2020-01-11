@@ -73,3 +73,24 @@
   height: 100%;
   margin-bottom: 3rem;
 }
+
+.content-card>div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+.content-card>div>ul>li>a{
+color:black;
+}
+.content-card>div>ul>li>a:hover{
+  color:var(--color-principal);
+}
+.content-card>div>ul>li>a:focus{
+  box-shadow:none
+}
+.page-item.active .page-link{
+  background-color:var(--color-principal);
+  border-color:var(--color-principal);
+}

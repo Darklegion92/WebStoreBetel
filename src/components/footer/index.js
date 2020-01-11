@@ -47,8 +47,8 @@ componentDidMount() {
       context: { mensajeEmpresa, sucursales, redesSociales }
     } = this.props;
     return (
-      <div Style="background-color:white;">
-        <footer class="footer-bs">
+      <div Style="background-color:white;  width: 100%!important; align-items: center;">
+        <footer class="footer-bs" >
           <div class="row">
             <div class="col-md-3 footer-brand animated fadeInLeft">
               <h2>Supercados Betel S.A.S.</h2>

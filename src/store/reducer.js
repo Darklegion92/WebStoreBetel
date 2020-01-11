@@ -65,17 +65,27 @@ export default (state, action) => {
       return { [action.value.name]: action.value.value };
     case ActionsTypes.agregarFamilia:
       return {
-        filtros: { texto, familia: action.value, marca:state.filtros.marca },
+        filtros: { texto, familia: action.value, marca: state.filtros.marca },
         montarArticulos: true
       };
     case ActionsTypes.agregarGrupo:
       return {
-        filtros: { texto, grupo: action.value, familia: state.filtros.familia, marca:state.filtros.marca },
+        filtros: {
+          texto,
+          grupo: action.value,
+          familia: state.filtros.familia,
+          marca: state.filtros.marca
+        },
         montarArticulos: true
       };
     case ActionsTypes.agregarMarca:
       return {
-        filtros: { texto, marca: action.value, familia: state.filtros.familia, grupo: state.filtros.grupo},
+        filtros: {
+          texto,
+          marca: action.value,
+          familia: state.filtros.familia,
+          grupo: state.filtros.grupo
+        },
         montarArticulos: true
       };
     case ActionsTypes.CAMBIARSTATE:
@@ -85,8 +95,19 @@ export default (state, action) => {
     case ActionsTypes.agregarItemCarrito:
       action.value.cantidad = 1;
       var carItems = [action.value, ...state.carItems];
+      /* var id = async ()=> await localStorage.getItem("id")
+      if (!id) {
+        const prom = state.agregarItem(action.value, id)
+        prom.then(e=>{
+          id=e.data.id
+          console.log(id);
+          
+        localStorage.setItem("id", id);
+        })
+      } else state.agregarItem(action.value, id);*/
       localStorage.setItem("carItems", JSON.stringify(carItems));
       return { carItems, montarArticulos: true };
+
     case ActionsTypes.sumarItem:
       carItems = state.carItems;
       carItems[action.value].cantidad++;
@@ -99,6 +120,41 @@ export default (state, action) => {
       else carItems[action.value].cantidad--;
       localStorage.setItem("carItems", JSON.stringify(carItems));
       return { carItems, montarArticulos: true };
+    case ActionsTypes.loginFacebook:
+      state.verificarCliente(action.value);
+      break;
+    case ActionsTypes.guardarCliente:
+      var cliente = state.cliente;
+      cliente.condiciones = action.value.condiciones;
+      cliente.direccionCliente = action.value.direccion;
+      cliente.idBarrio = action.value.idBarrio;
+      cliente.celularCliente = action.value.telefono;
+      cliente.documentoCliente = action.value.documento;
+      state.guardarCliente(cliente);
+      break;
+    case ActionsTypes.eliminarCliente:
+      localStorage.removeItem("cliente");
+      const value = {
+        idCliente: "",
+        docuemntoCliente: "",
+        idFacebook: "",
+        nombresCliente: "",
+        apellidosCliente: "",
+        direccionCliente: "",
+        idBarrio: "",
+        celularCliente: "",
+        correoCliente: "",
+        idGenero: "",
+        condiciones: false,
+        password: ""
+      };
+      return { cliente: value };
+    case ActionsTypes.login:
+      state.ingresarCliente(action.value.correo, action.value.password);
+      break;
+    case ActionsTypes.guardarPedidoNoRegistrado:
+      state.guardarPedidoNoRegistrado(action.value);
+      break;
     default:
       break;
   }

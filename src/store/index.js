@@ -8,6 +8,89 @@ const { Provider, Consumer } = createContext();
 class ContextStore extends Component {
   state = {
     autenticado: "",
+    errorClave: false,
+    pedidoGrabado: false,
+    guardarPedidoNoRegistrado: async cliente => {
+      const res = await axios.post(
+        CONSTANTES.APIREST + "/carrito/guardar/noregistrado",
+        {
+          cliente,
+          carItems: this.state.carItems
+        }
+      );
+      if (res.status === 200 && res.data.res) {
+        localStorage.removeItem("carItems");
+        this.setState({ pedidoGrabado: true, carItems: [] });
+      }
+    },
+    ingresarCliente: async (correo, password) => {
+      const res = await axios.get(CONSTANTES.APIREST + "/usuario/login/", {
+        params: { correo }
+      });
+
+      if (res.status === 200 && res.data) {
+        if (res.data[0].passwordCliente === password) {
+          const cliente = {
+            idCliente: res.data[0].idCliente,
+            docuemntoCliente: res.data[0].docuemntoCliente,
+            idFacebook: res.data[0].idFacebook,
+            nombresCliente: res.data[0].password,
+            apellidosCliente: res.data[0].apellidosCliente,
+            direccionCliente: res.data[0].direccionCliente,
+            idBarrio: res.data[0].idBarrio,
+            celularCliente: res.data[0].celularCliente,
+            correoCliente: res.data[0].correoCliente,
+            idGenero: "",
+            condiciones: false,
+            password: ""
+          };
+          this.setState({ cliente });
+          localStorage.setItem("cliente", JSON.stringify(cliente));
+        } else this.setState({ errorClave: true });
+      } else this.setState({ errorClave: true });
+    },
+    guardarCliente: async cliente => {
+      const res = await axios.post(CONSTANTES.APIREST + "/usuario/guardar/", {
+        cliente
+      });
+      if (res.status === 200)
+        localStorage.setItem("cliente", JSON.stringify(cliente));
+      this.setState({ crearCliente: false });
+    },
+    verificarCliente: async value => {
+      if (value.userID !== "") {
+        const res = await axios.get(
+          CONSTANTES.APIREST + "/usuario/consultar/" + value.userID
+        );
+        if (res.status === 200 && !res.datos) {
+          this.setState({
+            crearCliente: true,
+            cliente: {
+              idFacebook: value.userID,
+              nombresCliente: value.name,
+              correoCliente: value.email
+            }
+          });
+        }
+      }
+    },
+    crearCliente: false,
+    cliente: {
+      idCliente: "",
+      docuemntoCliente: "",
+      idFacebook: "",
+      nombresCliente: "",
+      apellidosCliente: "",
+      direccionCliente: "",
+      idBarrio: "",
+      celularCliente: "",
+      correoCliente: "",
+      idGenero: "",
+      condiciones: false,
+      password: ""
+    },
+    barrios: [],
+    agregarItem: this.agregarItem,
     formatNumber: {
       separador: ".", // separador para los miles
       sepDecimal: ",", // separador para los decimales
@@ -57,17 +140,20 @@ class ContextStore extends Component {
     carItems: [],
     imageSlider: [],
     agrupaciones: [],
-    dispatch: action => {
-      const response = reducer(this.state, action);
+    dispatch: async action => {
+      const response = await reducer(this.state, action);
       this.setState(response);
     }
   };
+
   componentDidMount() {
     this.cargarLocalStorage();
   }
+
   componentDidUpdate() {
     if (this.state.montarArticulos) {
       this.cargarArticulos();
+      this.cargarBarrios();
     }
     if (this.state.cargarLocalStorage) {
       this.cargarLocalStorage();
@@ -80,9 +166,17 @@ class ContextStore extends Component {
   cargarLocalStorage() {
     this.setState({ cargarLocalStorage: false });
     const carItems = JSON.parse(localStorage.getItem("carItems"));
+    const cliente = JSON.parse(localStorage.getItem("cliente"));
     if (carItems) this.setState({ carItems });
+    if (cliente) this.setState({ cliente });
   }
-
+  async agregarItem(carItem, id) {
+    if (id) {
+      axios.post(CONSTANTES.APIREST + "/carrito", { carItem, id });
+    } else {
+      return axios.post(CONSTANTES.APIREST + "/carrito", { carItem });
+    }
+  }
   async cargarArticulos() {
     this.setState({ montarArticulos: false });
     const { filtros } = this.state;
@@ -106,7 +200,6 @@ class ContextStore extends Component {
         }
       );
       const articulos = resArticulos.data;
-      console.log(articulos);
 
       this.setState({
         articulos
@@ -122,7 +215,16 @@ class ContextStore extends Component {
       });
     }
   }
+  async cargarBarrios() {
+    const resBarrios = await axios.get(CONSTANTES.APIREST + "/barrios");
+    const barrios = resBarrios.data;
+
+    this.setState({
+      barrios
+    });
+  }
 }
+
 const WrapperConsumer = Component => {
   return props => {
     return (

@@ -5,7 +5,7 @@ import { WrapperConsumer, ActionsTypes } from "../../../store";
 import CONSTANTES from "../../../config/CONSTANTES";
 import axios from "axios";
 import { IoMdClose } from "react-icons/io";
-import { Button, Form } from "react-bootstrap/";
+import { Button } from "react-bootstrap/";
 
 class filter extends Component {
   componentDidMount() {
@@ -140,22 +140,26 @@ class filter extends Component {
             <div className="borde">
               <div className="grupo-filtro">
                 {agrupaciones.map((agrupacion, i) => {
+                  if (i >= 1) {
+                  }
                   return (
-                    <Form.Check
-                      label={agrupacion.nombreFamilia}
-                      name={agrupacion.nombreFamilia}
+                    <li
+                      id={agrupacion.nombreFamilia}
                       onClick={e => {
                         this.setState({
                           seleccion: i,
                           departamentos: false,
                           solo: false
                         });
+
                         dispatch({
                           type: ActionsTypes.agregarFamilia,
-                          value: e.target.name
+                          value: e.target.id
                         });
                       }}
-                    />
+                    >
+                      {agrupacion.nombreFamilia}
+                    </li>
                   );
                 })}
               </div>
@@ -168,18 +172,20 @@ class filter extends Component {
             <div className="borde">
               <div className="grupo-filtro">
                 {agrupaciones[this.state.seleccion].grupos.map((grupo, i) => {
-                  return (
-                    <Form.Check
-                      label={grupo.nombreGrupo}
-                      name={grupo.nombreGrupo}
-                      onClick={e => {
-                        dispatch({
-                          type: ActionsTypes.agregarGrupo,
-                          value: e.target.name
-                        });
-                      }}
-                    />
-                  );
+                  if (i >= 1)
+                    return (
+                      <li
+                        id={grupo.nombreGrupo}
+                        onClick={e => {
+                          dispatch({
+                            type: ActionsTypes.agregarGrupo,
+                            value: e.target.name
+                          });
+                        }}
+                      >
+                        {grupo.nombreGrupo}
+                      </li>
+                    );
                 })}
               </div>
             </div>
@@ -190,16 +196,17 @@ class filter extends Component {
           <div className="grupo-filtro">
             {marcas.map(marca => {
               return (
-                <Form.Check
-                  label={marca.nombreMarca}
-                  name={marca.nombreMarca}
+                <li
+                  id={marca.nombreMarca}
                   onClick={e => {
                     dispatch({
                       type: ActionsTypes.agregarMarca,
-                      value: e.target.name
+                      value: e.target.id
                     });
                   }}
-                />
+                >
+                  {marca.nombreMarca}
+                </li>
               );
             })}
           </div>

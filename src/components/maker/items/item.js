@@ -26,7 +26,7 @@ function index(props) {
       <Card.Img
         className="card-img"
         variant="top"
-        src={CONSTANTES.APIREST + "/img/articulos/" + codigoArticulo + ".webp"}
+        src={CONSTANTES.APIREST + "/img/articulos/" + codigoArticulo + ".jpg"}
       />
       <Card.Text className="text-preOld">{formatNumber.new(precioArticulo,"$")}</Card.Text>
       <Card.Text className="text-preNew">{formatNumber.new(precioArticulo,"$")}</Card.Text>

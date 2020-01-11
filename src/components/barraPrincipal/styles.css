@@ -84,6 +84,12 @@
   font-weight: bold;
   color:white
 }
+
+.loginFace{
+  border:none;
+  background-color: transparent;
+  color:white
+}
 /*moviles vertical*/
 @media (max-width: 575px){
   .con-barPri {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Image } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import "./styles.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -7,6 +8,15 @@ import CONSTANTES from "../../config/CONSTANTES";
 import { WrapperConsumer } from "../../store";
 
 class categorias extends Component {
+  state = {
+    redirect: false
+  };
+
+  renderRedirect(item) {
+    if (this.state.redirect) {
+      return <Redirect to={"/tienda/" + item} />;
+    }
+  }
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.context.agrupaciones !== this.props.context.agrupaciones;
   }
@@ -16,7 +26,13 @@ class categorias extends Component {
       <Carousel responsive={responsive} infinite={true}>
         {agrupaciones.map(item => {
           return (
-            <div className="img-cat" href="/tienda">
+            <div
+              className="img-cat"
+              onClick={this.setState({
+                redirect: true
+              })}
+            >
+              {this.renderRedirect(item.nombreFamilia)}
               <Image
                 src={CONSTANTES.APIREST + "/img/logo/" + item.imgFamilia}
                 roundedCircle
