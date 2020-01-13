@@ -95,16 +95,6 @@ export default (state, action) => {
     case ActionsTypes.agregarItemCarrito:
       action.value.cantidad = 1;
       var carItems = [action.value, ...state.carItems];
-      /* var id = async ()=> await localStorage.getItem("id")
-      if (!id) {
-        const prom = state.agregarItem(action.value, id)
-        prom.then(e=>{
-          id=e.data.id
-          console.log(id);
-          
-        localStorage.setItem("id", id);
-        })
-      } else state.agregarItem(action.value, id);*/
       localStorage.setItem("carItems", JSON.stringify(carItems));
       return { carItems, montarArticulos: true };
 
@@ -155,6 +145,16 @@ export default (state, action) => {
     case ActionsTypes.guardarPedidoNoRegistrado:
       state.guardarPedidoNoRegistrado(action.value);
       break;
+    case ActionsTypes.editarCantidad:
+      var carItems1 = state.carItems;
+      carItems1[action.value.id].cantidad = action.value.cantidad;
+      localStorage.setItem("carItems", JSON.stringify(carItems1));
+      return { carItems: carItems1 };
+    case ActionsTypes.eliminarItem:
+      carItems = state.carItems;
+      carItems.splice(action.value, 1);
+      localStorage.setItem("carItems", JSON.stringify(carItems));
+      return { carItems, montarArticulos: true };
     default:
       break;
   }

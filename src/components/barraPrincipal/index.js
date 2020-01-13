@@ -52,6 +52,7 @@ class barraPrincipal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       this.props.context.carItems !== nextProps.context.carItems ||
+      this.props.context.montarArticulos ||
       this.props.context.valorFiltro !== nextProps.context.valorFiltro ||
       this.props.context.crearCliente !== nextProps.context.crearCliente ||
       this.props.context.cliente !== nextProps.context.cliente ||

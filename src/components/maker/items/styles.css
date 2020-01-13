@@ -6,13 +6,13 @@
   min-width: 150px;
   line-height: 0.4rem;
   margin-top: 1rem;
-  border: none
+  border: none;
 }
 .card-title {
   font-size: 0.8rem;
 }
 .card-img {
-  max-width: 60%;
+ 
   margin-bottom: 1rem;
 }
 .text-preOld {
@@ -34,7 +34,7 @@
 .text-preName {
   font-weight: bold;
   font-size: 0.7rem;
-  line-height : 10px;
+  line-height: 10px;
   width: 100%;
 }
 .btn-comprar {
@@ -47,13 +47,13 @@
 .btn-comprar:active {
   background-color: var(--color-principal) !important;
   border-color: var(--color-principal) !important;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
 .btn-comprado {
   background-color: var(--color-principal) !important;
   border-color: var(--color-principal) !important;
-  box-shadow: none!important;
+  box-shadow: none !important;
   width: 100%;
 }
 .btn-comprado:focus,
@@ -61,10 +61,10 @@
 .btn-comprado:active {
   background-color: var(--color-principal) !important;
   border-color: var(--color-principal) !important;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
-.content-card{
+.content-card {
   grid-column-start: 2;
   grid-column-end: 3;
   display: flex;
@@ -74,23 +74,57 @@
   margin-bottom: 3rem;
 }
 
-.content-card>div{
+.content-card > div {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 15px;
 }
-.content-card>div>ul>li>a{
-color:black;
+.content-card > div > ul > li > a {
+  color: black;
 }
-.content-card>div>ul>li>a:hover{
-  color:var(--color-principal);
+.content-card > div > ul > li > a:hover {
+  color: var(--color-principal);
 }
-.content-card>div>ul>li>a:focus{
-  box-shadow:none
+.content-card > div > ul > li > a:focus {
+  box-shadow: none;
 }
-.page-item.active .page-link{
-  background-color:var(--color-principal);
-  border-color:var(--color-principal);
+.page-item.active .page-link {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.enCarrito {
+  width: 10rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(211, 209, 209);
+}
+.enCarrito > input {
+  width: 5rem;
+  height: 30px;
+  margin: 5px 5px;
+  font-size: 0.8rem;
+  background-color: var(--color-principal);
+  border: none;
+  text-align: center;
+  font-weight: bold;
+}
+.enCarrito > label {
+  width: 2rem;
+  font-size: 0.8rem;
+  margin: 5px 0px;
+  font-weight: bold;
+}
+.enCarrito svg {
+  cursor: pointer;
+}
+.enCarrito svg > *:hover {
+  color: black;
+  width: 200%;
+}
+.enCarrito svg:hover {
+  font-size: 150%;
 }

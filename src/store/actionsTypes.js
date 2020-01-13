@@ -18,5 +18,7 @@ export default {
   guardarCliente: "guardarCliente",
   eliminarCliente: "eliminarCliente",
   login: "login",
-  guardarPedidoNoRegistrado: "guardarPedidoNoRegistrado"
+  guardarPedidoNoRegistrado: "guardarPedidoNoRegistrado",
+  editarCantidad: "editarCantidad",
+  eliminarItem: "eliminarItem"
 };

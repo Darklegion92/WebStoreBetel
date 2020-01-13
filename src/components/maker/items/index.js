@@ -18,8 +18,7 @@ class items extends Component {
 
     for (var i = 1; i <= this.state.totalPaginas; i++) {
       if (i <= 10) {
-        if (this.state.paginaActual === i) {
-          console.log(this.state.paginaActual +"idactiva"+i);
+        if (this.state.paginaActual == i) {
           numeros.push(
             <Pagination.Item
               active
@@ -30,7 +29,6 @@ class items extends Component {
             </Pagination.Item>
           );
         } else {
-          console.log(this.state.paginaActual +"id"+i);
           numeros.push(
             <Pagination.Item
               id={i}
@@ -51,6 +49,7 @@ class items extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.context.articulos !== this.props.context.articulos ||
+      nextProps.context.filtros !== this.props.context.filtros ||
       this.state.paginaActual !== nextState.paginaActual ||
       this.state.totalPaginas !== nextState.totalPaginas
     );
@@ -78,6 +77,7 @@ class items extends Component {
           )
             return <Item datos={articulo} />;
         })}
+
         <div className="paginacion">
           <Pagination>
             <Pagination.First
