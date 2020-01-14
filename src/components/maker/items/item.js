@@ -19,6 +19,7 @@ function filtrar(arr, codigoArticulo) {
 function index(props) {
   const { id, nombreArticulo, precioArticulo, codigoArticulo } = props.datos;
   const { dispatch, carItems, formatNumber } = props.context;
+  console.log(codigoArticulo + " " + nombreArticulo);
 
   return (
     <Card className="card-content" id={id}>
