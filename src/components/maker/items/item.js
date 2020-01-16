@@ -9,6 +9,8 @@ function filtrar(arr, codigoArticulo) {
   let res = 0;
   arr.map(item => {
     if (item.codigoArticulo === codigoArticulo) res++;
+
+    return 0;
   });
 
   if (res > 0) {
@@ -26,7 +28,7 @@ function index(props) {
       <Card.Img
         className="card-img"
         variant="top"
-        src={CONSTANTES.APIREST + "/img/articulos/" + codigoArticulo + ".jpg"}
+        src={CONSTANTES.APIREST + "/img/articulos/" + codigoArticulo +CONSTANTES.EXTENSION}
       />
       <Card.Text className="text-preOld">
         {formatNumber.new(precioArticulo, "$")}

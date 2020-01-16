@@ -186,6 +186,7 @@ class filter extends Component {
                         {grupo.nombreGrupo}
                       </li>
                     );
+                  return null;
                 })}
               </div>
             </div>

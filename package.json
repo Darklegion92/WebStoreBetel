@@ -1,5 +1,6 @@
 {
   "name": "tiendavirtual-betel",
+  "homepage" : "http://prueba.supermercadobetel.com.co/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

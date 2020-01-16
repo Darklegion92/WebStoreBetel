@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { Nav } from "react-bootstrap";
 import BarraServicios from "../barraServicios";
+import { CardDeck } from "react-bootstrap";
 import BarraPrincipal from "../barraPrincipal";
 import { WrapperConsumer, ActionsTypes } from "../../store";
 import Items from "./items";
@@ -99,6 +100,7 @@ class maker extends Component {
   }
 
   render() {
+    const { articulos } = this.props.context;
     return (
       <Fragment>
         <Nav className="flex-column sticky-top fixed-top bg-white">
@@ -109,7 +111,12 @@ class maker extends Component {
         </Nav>
         <div id="cuerpo-maker">
           <Filter />
-          <Items />
+          {articulos.length > 0 && <Items />}
+          {articulos.length <= 0 && (
+            <CardDeck className="content-card">
+              <h1>No hay articulos</h1>
+            </CardDeck>
+          )}
         </div>
         <Nav id="footer" className="sticky-bottom">
           <Footer />

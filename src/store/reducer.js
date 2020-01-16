@@ -8,6 +8,7 @@ export default (state, action) => {
   switch (action.type) {
     case ActionsTypes.eliminarFiltroTexto:
       return {
+        valorFiltro: "",
         filtros: {
           texto: "",
           familia: state.filtros.familia,

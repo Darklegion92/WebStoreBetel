@@ -15,7 +15,7 @@ function item(props) {
             CONSTANTES.APIREST +
             "/img/articulos/" +
             datos.codigoArticulo +
-            ".jpg"
+            CONSTANTES.EXTENSION
           }
           rounded
           className="img-car"

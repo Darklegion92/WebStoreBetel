@@ -18,6 +18,7 @@ class items extends Component {
 
     for (var i = 1; i <= this.state.totalPaginas; i++) {
       if (i <= 10) {
+        // eslint-disable-next-line eqeqeq
         if (this.state.paginaActual == i) {
           numeros.push(
             <Pagination.Item
@@ -76,6 +77,8 @@ class items extends Component {
             this.state.paginaActual * 51 > i + 1
           )
             return <Item datos={articulo} />;
+
+          return null;
         })}
 
         <div className="paginacion">

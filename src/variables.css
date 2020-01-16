@@ -1,10 +1,12 @@
-*{
-    font-family: var(--fuente-principal)
+* {
+  font-family: var(--fuente-principal);
 }
-
-:root{
-    --color-principal: #ABC355;
-    --color-secundario: #D38241;
-    --color-terciario: #EFE74B;
-    --fuente-principal:'Lato', sans-serif;
+body {
+  overflow-x: hidden;
+}
+:root {
+  --color-principal: #abc355;
+  --color-secundario: #d38241;
+  --color-terciario: #efe74b;
+  --fuente-principal: "Lato", sans-serif;
 }

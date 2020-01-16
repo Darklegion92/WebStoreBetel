@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Card } from "react-bootstrap";
 import { MdDeleteForever } from "react-icons/md";
 import { ActionsTypes } from "../../../store";
-import InputNumber from "rc-input-number";
+
 export default class btnEnCarrito extends Component {
   state = {
     numero: 1
@@ -17,6 +17,7 @@ export default class btnEnCarrito extends Component {
           i
         };
       }
+      return null;
     });
     return articulo;
   };

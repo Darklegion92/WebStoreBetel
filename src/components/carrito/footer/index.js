@@ -34,6 +34,7 @@ class footer extends Component {
     if (carItems) {
       carItems.map(item => {
         total = total + item.cantidad * item.precioArticulo;
+        return null;
       });
     }
     const handleClose = () => this.setState({ show: false });
