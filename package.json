@@ -12,7 +12,7 @@
     "formik": "^2.0.8",
     "jquery": "^3.4.1",
     "mdbreact": "^4.23.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "pure-react-carousel": "^1.24.1",
     "rc-input-number": "^4.5.3",
     "react": "^16.12.0",
